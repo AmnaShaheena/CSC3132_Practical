@@ -42,8 +42,8 @@ catch (Exception $e) {
     die($e->getMessage());
 }
 }
-showTable("students",$connect);
-showTable("teachers",$connect);
+showTable("student",$connect);
+showTable("teacher",$connect);
 
 
 function showTable1($tname,$connect,$colnames){
@@ -89,5 +89,5 @@ function showTable1($tname,$connect,$colnames){
         die($e->getMessage());
     }
     }
-    showTable1("teachers",$connect,["name","subject"]);
+    showTable1("teacher",$connect,["name","subject"]);
 ?>
