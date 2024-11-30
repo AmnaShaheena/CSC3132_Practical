@@ -8,7 +8,7 @@
     <title>School</title>
 </head>
 <body>
- <form action="adddata.php" method="POST">
+ <form action="addData.php" method="POST">
     <table>
         <tr>
            
@@ -43,7 +43,7 @@
  </form>
 
 <?php
-    require_once  'connection.php';
+    require_once  'dbconf.php';
 
    
     
