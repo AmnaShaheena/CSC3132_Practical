@@ -12,7 +12,7 @@ try {
     
         if (mysqli_num_rows($result) > 0) {
        
-            echo "<table border='1' >";
+            echo "<table border='1' cellpadding='5' cellspacing='0'>";
             echo "<tr>";
             
             $columns = mysqli_fetch_fields($result);
@@ -43,6 +43,7 @@ catch (Exception $e) {
 }
 }
 showTable("student",$connect);
+echo "<br>";
 showTable("teacher",$connect);
 
 
@@ -59,7 +60,7 @@ function showTable1($tname,$connect,$colnames){
         
             if (mysqli_num_rows($result) > 0) {
            
-                echo "<table border='1' >";
+                echo "<table border='1' cellpadding='5' cellspacing='0'>";
                 echo "<tr>";
                 
                 $columns = mysqli_fetch_fields($result);
@@ -89,5 +90,6 @@ function showTable1($tname,$connect,$colnames){
         die($e->getMessage());
     }
     }
+    echo "<br>";
     showTable1("teacher",$connect,["name","subject"]);
 ?>
