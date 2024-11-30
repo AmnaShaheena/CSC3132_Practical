@@ -51,7 +51,7 @@
     function addData($connect, $regno,$name,$age,$course){
         try{
             //query
-            $sql="INSERT INTO students VALUE ('$regno','$name',$age,'$course')";
+            $sql="INSERT INTO student VALUE ('$regno','$name',$age,'$course')";
             //execute the query
             $result=mysqli_query($connect,$sql);
             if($result){
