@@ -43,28 +43,11 @@
  </form>
 
 <?php
-    require_once  'conf/dbconf.php';
-
+    require_once  '../conf/dbconf.php';
+    require_once  '../myfunctions/func.php';
    
     
-    //insert data into table
-    function addData($connect, $regno,$name,$age,$course){
-        try{
-            //query
-            $sql="INSERT INTO student VALUE ('$regno','$name',$age,'$course')";
-            //execute the query
-            $result=mysqli_query($connect,$sql);
-            if($result){
-                echo "<br>";
-                echo "New student record created succeccfully";
-            }else{
-                die("Error ".mysqli_error($connect));
-            }
-        } catch (Exception $e){
-            die($e->getMessage());
-        } 
-
-    }
+   
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         //echo "Got the POST request from the client";
         $regno=$_POST['regno'];

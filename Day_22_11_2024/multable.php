@@ -1,6 +1,6 @@
 <?php
-require_once 'conf/dbconf.php';
-require_once 'myfunctions/func.php';
+require_once '../conf/dbconf.php';
+require_once '../myfunctions/func.php';
 
 
 
