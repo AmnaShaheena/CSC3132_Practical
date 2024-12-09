@@ -43,7 +43,7 @@
  </form>
 
 <?php
-    require_once  'dbconf.php';
+    require_once  'conf/dbconf.php';
 
    
     
