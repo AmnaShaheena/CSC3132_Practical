@@ -10,7 +10,7 @@ try {
     
         if (mysqli_num_rows($result) > 0) {
        
-            echo "<table border='1' cellpadding='5' cellspacing='0'>";
+            echo "<table border='1' >";
             echo "<tr>";
             
             $columns = mysqli_fetch_fields($result);
@@ -42,6 +42,7 @@ catch (Exception $e) {
 }
 
 
+
 function showTable1($tname,$connect,$colnames){
     try {
        $sql = "SELECT ";
@@ -55,7 +56,7 @@ function showTable1($tname,$connect,$colnames){
         
             if (mysqli_num_rows($result) > 0) {
            
-                echo "<table border='1' cellpadding='5' cellspacing='0'>";
+                echo "<table border='1' >";
                 echo "<tr>";
                 
                 $columns = mysqli_fetch_fields($result);
@@ -85,157 +86,183 @@ function showTable1($tname,$connect,$colnames){
         die($e->getMessage());
     }
     }
- //insert data into table
- function addData($connect, $regno,$name,$age,$course){
-    try{
-        //query
-        $sql="INSERT INTO student VALUE ('$regno','$name',$age,'$course')";
-        //execute the query
-        $result=mysqli_query($connect,$sql);
-        if($result){
-            echo "<br>";
-            echo "New student record created succeccfully";
-        }else{
-            die("Error ".mysqli_error($connect));
-        }
-    } catch (Exception $e){
-        die($e->getMessage());
-    } 
+   
+    // showTable1("teachers",$connect,["name","subject"]);
+    // echo "<br>";
+    // showTable1("students",$connect,["name","age"]);
 
-}
-//wrtie a function to search the student details by name
-function SearchStud($name,$connect)
-{
-	try {
-
-	//Query
-		$sql = "SELECT * FROM student where name like '%$name%' ";
-		//echo $sql;
-	//excute the quey
-		$result = mysqli_query($connect,$sql);
-	//check if data exists in the table
-		if (mysqli_num_rows($result)>0) {
-		// fetch the data from rows
-			echo "<table border='1'>";
-			$col = mysqli_fetch_fields($result);
-		//print the colums
-			echo "<tr>";
-			foreach ($col as $value) {
-			//return an object
-			//print_r($value);
-				echo "<td>$value->name</td>";
-			}
-			echo "</tr>";
-			
-			while ($row = mysqli_fetch_assoc($result)) {
-			//print the data in a table format
-				echo "<tr>";
-				foreach ($row as $key => $value) {
-					echo "<td>$value</td>";
-				}
-				echo "</tr>";
-			}
-			echo "</table>";
-		} else {
-			echo "No results";
-		}
-		
-	} catch (Exception $e) {
-		die($e->getMessage());
-	}
-}
-
- //GET DATA FROM DB
- function student($connect){
-    try{
-    
-        $sql = "SELECT regno,name FROM  student";
-    
-    
-        $result = mysqli_query($connect,$sql);
-    
-        if (mysqli_num_rows($result)>0) {
-        
-    
-            echo "<table border=1> ";
-    
-        $col = mysqli_fetch_fields($result);
-    
-        echo "<tr>";
-        foreach ($col as $value) {
+    function searchName($name,$connect){
+        try {
+           $sql = "SELECT * FROM students where name like '%$name%'";
             
-                echo "<td>".$value->name."</td>";
-            }
-
-            echo "<td> View details </td>";
-            echo "</tr>";
-            while($row = mysqli_fetch_assoc($result)){ 
-            echo "<tr>";
-            foreach ($row as $key => $value) {
-                echo "<td>$value</td>";
-            }
-            $regno=$row['regno'];
-            //query string
-            echo "<td><a href='printTable.php? regno=$regno '> View </a> </td>";
-            echo "</tr>";
+              
+          $result = mysqli_query($connect, $sql);
+         
             
-            }
-
-            echo "</table>";
-        } 
-        else{
-            echo "No results"; 
+                if (mysqli_num_rows($result) > 0) {
+               
+                    echo "<table border='1' >";
+                    echo "<tr>";
+                    
+                    $columns = mysqli_fetch_fields($result);
+                    foreach ($columns as $column) {
+                       
+            
+                        echo "<th>$column->name</th>";
+                    }
+                    echo "</tr>";
+            
+                    
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        
+                        echo "<tr>";
+                        foreach ($row as $value) {
+                            echo "<td>$value</td>";
+                        }
+                        echo "</tr>";
+                    }      
+                    echo "</table>";
+                } else {
+                    echo "No result";
+                }
+              
         }
-    
+        catch (Exception $e) {
+            die($e->getMessage());
         }
-    
-    
-    catch(Exception $e){
-        die($e->getMessage());
     }
-}
 
-
-function stdDetails($id,$connect){
-    try{
-    
-        $sql = "SELECT * FROM  student where  id=$id ";
-    
-    
-        $result = mysqli_query($connect,$sql);
-    
-        if (mysqli_num_rows($result)>0) {
-        
-    
-            echo "<table border=1> ";
-    
-        $col = mysqli_fetch_fields($result);
-    
-        echo "<tr>";
-        foreach ($col as $value) {
+    function getName($connect){
+        try {
+           $sql = "SELECT * FROM students ";
             
-                echo "<td>".$value->name."</td>";
-            }
-            echo "</tr>";
-            while($row = mysqli_fetch_assoc($result)){
-                
-            echo "<tr>";
-            foreach ($row as $key => $value) {
-                echo "<td>$value</td>";
-            }
-            echo "</tr>";
-            }
-            echo "</table>";
-        } 
-        else{
-            echo "No results"; 
+              
+          $result = mysqli_query($connect, $sql);
+         
+            
+                if (mysqli_num_rows($result) > 0) {
+               
+                    echo "<table border='1' >";
+                    echo "<tr>";
+                    
+                    $columns = mysqli_fetch_fields($result);
+                    foreach ($columns as $column) {
+                       
+            
+                        echo "<th>$column->name</th>";
+                    }
+                    echo "<td>View students details</td>";
+                    echo "</tr>";
+            
+                    
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        
+                        echo "<tr>";
+                        foreach ($row as $value) {
+                            echo "<td>$value</td>";
+                            
+                        }
+                        $id=$row['id'];
+
+                        echo "<td><a href='stdDetails.php?id=$id'>View</a></td>";
+                        echo "</tr>";
+                    }      
+                    echo "</table>";
+                } else {
+                    echo "No result";
+                }
+              
         }
-    
+        catch (Exception $e) {
+            die($e->getMessage());
         }
-    
-    
-    catch(Exception $e){
-        die($e->getMessage());
+
     }
-}
-    ?>
+   
+
+    function getDetails($id,$connect){
+        try {
+            $sql = "SELECT * FROM students WHERE id=$id ";
+            
+              
+          $result = mysqli_query($connect, $sql);
+         
+            
+                if (mysqli_num_rows($result) > 0) {
+               
+                    echo "<table border='1' >";
+                    echo "<tr>";
+                    
+                    $columns = mysqli_fetch_fields($result);
+                    foreach ($columns as $column) {
+                       
+            
+                        echo "<th>$column->name</th>";
+                    }
+                    echo "</tr>";
+            
+                    
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        
+                        echo "<tr>";
+                        foreach ($row as $value) {
+                            echo "<td>$value</td>";
+                        }
+                        echo "</tr>";
+                    }      
+                    echo "</table>";
+                } else {
+                    echo "No result";
+                }
+              
+        }
+        catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+    function joinTable($id,$connect){
+        try {
+            $sql = "SELECT * FROM students,teachers
+            JOIN students,teachers
+            WHERE students.course=teachers.course";
+            
+              
+          $result = mysqli_query($connect, $sql);
+         
+            
+                if (mysqli_num_rows($result) > 0) {
+               
+                    echo "<table border='1' >";
+                    echo "<tr>";
+                    
+                    $columns = mysqli_fetch_fields($result);
+                    foreach ($columns as $column) {
+                       
+            
+                        echo "<th>$column->name</th>";
+                    }
+                    echo "</tr>";
+            
+                    
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        
+                        echo "<tr>";
+                        foreach ($row as $value) {
+                            echo "<td>$value</td>";
+                        }
+                        echo "</tr>";
+                    }      
+                    echo "</table>";
+                } else {
+                    echo "No result";
+                }
+              
+        }
+        catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+?>
