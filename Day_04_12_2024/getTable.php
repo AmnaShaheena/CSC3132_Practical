@@ -9,14 +9,14 @@
 <body>
 
 <?php
-require_once '../conf/dbconf.php';
-require_once '../myfunctions/func.php';
+require_once 'conf/dbconf.php';
+require_once 'myfunctions/func.php';
 echo $_SERVER['PHP_SELF'];//get the file name
 
 // showTable("students",$connect);
 // echo "<br>";
 // showTable1("teachers",$connect,["name","subject"]);
-searchStud('name',$connect);
+//searchName('',$connect);
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
@@ -31,12 +31,12 @@ searchStud('name',$connect);
         </tr>
     </table>
 </form>
- <?php
 
+ <?php
  if(isset($_GET['name']) && $_GET['name' != '']){
-    searchStud($_GET['name'],$connect);
+    searchName($_GET['name'],$connect);
  }
- ?>
+ ?> 
 
 
 </body>
