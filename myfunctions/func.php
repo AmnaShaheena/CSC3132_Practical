@@ -1,5 +1,22 @@
 <?php
+//insert data into table
+function addData($connect, $regno,$name,$age,$course){
+    try{
+        //query
+        $sql="INSERT INTO students VALUE ('$regno','$name',$age,'$course')";
+        //execute the query
+        $result=mysqli_query($connect,$sql);
+        if($result){
+            echo "<br>";
+            echo "New student record created succeccfully";
+        }else{
+            die("Error ".mysqli_error($connect));
+        }
+    } catch (Exception $e){
+        die($e->getMessage());
+    } 
 
+}
 function showTable($tname,$connect){
 try {
    $sql = "SELECT * FROM $tname";
