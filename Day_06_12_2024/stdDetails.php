@@ -9,8 +9,8 @@
 <body>
     
     <?php
-    require_once 'conf/dbconf.php';
-    require_once 'myfunctions/func.php';
+    require_once '../conf/dbconf.php';
+    require_once '../myfunctions/func.php';
     $regno=$_GET['regno'];
     getDetails($regno,$connect);
     //echo "<h4>My name is ...</h4>";

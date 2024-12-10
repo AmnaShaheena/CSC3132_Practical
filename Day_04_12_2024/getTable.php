@@ -9,8 +9,8 @@
 <body>
 
 <?php
-require_once 'conf/dbconf.php';
-require_once 'myfunctions/func.php';
+require_once '../conf/dbconf.php';
+require_once '../myfunctions/func.php';
 echo $_SERVER['PHP_SELF'];//get the file name
 
 // showTable("students",$connect);

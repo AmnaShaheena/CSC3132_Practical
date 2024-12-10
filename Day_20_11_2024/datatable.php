@@ -1,5 +1,5 @@
 <?php
-require_once 'conf/dbconf.php';
+require_once '../conf/dbconf.php';
 
 try {
     $sql = "SELECT * FROM student";
