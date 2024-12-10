@@ -162,9 +162,9 @@ function showTable1($tname,$connect,$colnames){
                             echo "<td>$value</td>";
                             
                         }
-                        $id=$row['id'];
+                        $id=$row['regno'];
 
-                        echo "<td><a href='stdDetails.php?id=$id'>View</a></td>";
+                        echo "<td><a href='stdDetails.php?id=$regno'>View</a></td>";
                         echo "</tr>";
                     }      
                     echo "</table>";
