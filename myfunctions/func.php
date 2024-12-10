@@ -93,7 +93,7 @@ function showTable1($tname,$connect,$colnames){
 
     function searchName($name,$connect){
         try {
-           $sql = "SELECT * FROM students where name like '%$name%'";
+           $sql = "SELECT * FROM student where name like '%$name%'";
             
               
           $result = mysqli_query($connect, $sql);
@@ -134,7 +134,7 @@ function showTable1($tname,$connect,$colnames){
 
     function getName($connect){
         try {
-           $sql = "SELECT * FROM students ";
+           $sql = "SELECT * FROM student ";
             
               
           $result = mysqli_query($connect, $sql);
@@ -182,7 +182,7 @@ function showTable1($tname,$connect,$colnames){
 
     function getDetails($id,$connect){
         try {
-            $sql = "SELECT * FROM students WHERE id=$id ";
+            $sql = "SELECT * FROM student WHERE id=$id ";
             
               
           $result = mysqli_query($connect, $sql);
@@ -224,9 +224,9 @@ function showTable1($tname,$connect,$colnames){
 
     function joinTable($id,$connect){
         try {
-            $sql = "SELECT * FROM students,teachers
-            JOIN students,teachers
-            WHERE students.course=teachers.course";
+            $sql = "SELECT * FROM student,teacher
+            JOIN student,teacher
+            WHERE student.course=teacher.course";
             
               
           $result = mysqli_query($connect, $sql);
