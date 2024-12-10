@@ -164,7 +164,7 @@ function showTable1($tname,$connect,$colnames){
                         }
                         $regno=$row['regno'];
 
-                        echo "<td><a href='stdDetails.php?id=$regno'>View</a></td>";
+                        echo "<td><a href='../Day_06_12_2024/stdDetails.php?id=$regno'>View</a></td>";
                         echo "</tr>";
                     }      
                     echo "</table>";
